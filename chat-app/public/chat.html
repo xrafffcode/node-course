@@ -21,34 +21,17 @@
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card chat-app">
-                    <div id="plist" class="people-list">
-                        <ul class="list-unstyled chat-list mt-2 mb-0">
-                            <li class="clearfix">
-                                <div class="chat-avatar">
-                                    <img src="https://via.placeholder.com/150x150" alt="
-                                    ">
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <div id="sidebar" class="people-list"></div>
                     <div class="chat">
-                        <div class="chat-history" style="overflow-y:scroll; height: 500px;">
-                            <div id="messages"></div>
-                            <ul class="m-b-0">
-                                <li class="clearfix">
-                                    <script id="message-template" type="text/html" class="message-data mt-3">
-                                            <div>
-                                                <span class="message-data-time">Some User - {{createdAt}}</span>
-                                             
-                                            </div>
-                                            <div class="message my-message mt-3">{{message}}</div>
-                                    </script>
-                                </li>
-                            </ul>
+                        <div class="chat-history" style="overflow-y:scroll; height: 500px;" id="chat-messages">
+                            <div id="messages">
+
+                            </div>
                         </div>
                         <div class="chat-message clearfix">
                             <form id="message-form" class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Enter your chat" name="message">
+                                <input type="text" class="form-control" placeholder="Enter your chat" name="message"
+                                    required autocomplete="off">
                                 <button class="btn btn-primary">Send</button>
                             </form>
                             <div class="d-grid gap-2">
@@ -61,16 +44,42 @@
         </div>
     </div>
 
-
-
-
-
-
-    <script id="location-message-template" type="text/html">
+    <script id="message-template" type="text/html" class="message-data mt-3">
         <div>
-            <p>{{createdAt}} - <a href="{{url}}" target="_blank">My Current Location</a></p>
+            <span class="message-data-time">{{username}} - {{createdAt}}</span>
+        </div>
+        <div class="message my-message mt-3">{{message}}</div>
+    </script>
+
+    <script id="location-message-template" type="text/html" class="message-data mt-3">
+        <div>
+            <span class="message-data-time">{{username}} - {{createdAt}}</span>
+        </div>
+        <div class="message my-message mt-3">
+            <iframe src="{{url}}"></iframe>
         </div>
     </script>
+
+    <script id="sidebar-template" type="text/html">
+        <h1>Room: {{room}}</h1>
+        <ul class="list-unstyled chat-list mt-2 mb-0">
+            {{#users}}
+            <li class="clearfix">
+                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                <div class="about">
+                    <div class="name">{{username}}</div>
+                    <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                </div>
+            </li>
+            {{/users}}
+        </ul>
+    </script>
+
+
+
+
+
+
 
     <script crossorigin="anonymous"
         src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
